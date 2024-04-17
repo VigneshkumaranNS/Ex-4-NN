@@ -1,6 +1,6 @@
 
-<H3>ENTER YOUR NAME : VIGNESH KUMARAN N S </H3>
-<H3>ENTER YOUR REGISTER NO : 212222230171 </H3>
+<H3>ENTER YOUR NAME: VIGNESH KUMARAN N S </H3>
+<H3>ENTER YOUR REGISTER NO: 212222230171 </H3>
 <H3>EX. NO.4</H3>
 <H3>DATE:</H3>
 <H1 ALIGN =CENTER>Implementation of MLP with Backpropagation for Multiclassification</H1>
@@ -115,131 +115,49 @@ Normalize our dataset.
 8. Finally, call the functions confusion_matrix(), and the classification_report() in order to evaluate the performance of our classifier.
 
 <H3>Program:</H3> 
-<br>
-<hr>
-<H5>Program without Activation and optimizer</H5> 
 
 ```py
-
-import sklearn
 import pandas as pd
-import numpy as np
+import sklearn
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import classification_report, confusion_matrix
 
-```
-```py
-
 url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
 names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'Class']
 irisdata = pd.read_csv(url, names=names)
-
-```
-```py
-
 # Takes first 4 columns and assign them to variable "X"
 X = irisdata.iloc[:, 0:4]
 # Takes first 5th columns and assign them to variable "Y". Object dtype refers to strings.
 y = irisdata.select_dtypes(include=[object])
 X.head()
 y.head()
-
-
-```
-```py
-
 # y actually contains all categories or classes:
 y.Class.unique()
 # Now transforming categorial into numerical values
 le = preprocessing.LabelEncoder()
 y = y.apply(le.fit_transform)
 y.head()
-
-
-```
-```py
-
 # Now for train and test split (80% of  dataset into  training set and  other 20% into test data)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)
-
-
-```
-```py
-
 # Feature scaling
 scaler = StandardScaler()
 scaler.fit(X_train)
 X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
-
-```
-```py
-
 mlp = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=1000)
 mlp.fit(X_train, y_train.values.ravel())
 predictions = mlp.predict(X_test)
 print(predictions)
-
-```
-```py
-
 # Last thing: evaluation of algorithm performance in classifying flowers
 print(confusion_matrix(y_test,predictions))
-
-
-```
-```py
-
 print(classification_report(y_test,predictions))
-
 ```
+<H3>Output:</H3>
 
-
-<H3>Output without Activation and optimizer</H3>
-
-
-<H3>X DATA:</H3>
-
-![alt](Screenshot%202024-04-10%20160526.png)
-
-<H3>Y DATA:</H3>
-
-![alt](Screenshot%202024-04-10%20160541.png)
-
-<H3>PREDICTIONS</H3>
-
-![alt](Screenshot%202024-04-10%20160607.png)
-
-<H3>CONFUSION MATRIX</H3>
-
-![ALT](Screenshot%202024-04-10%20160617.png)
-
-<H3>CLASSIFICATION REPORT</H3>
-
-![alt](Screenshot%202024-04-10%20160624.png)
-
-<H5>Program with Activation and optimizer</H5> 
-
-```py
-
-m1 = MLPClassifier(hidden_layer_sizes=(12, 13, 14), activation='relu', solver='adam', max_iter=2600)
-m1.fit(training_a, training_b.values.ravel())
-predicted_values = m1.predict(testing_a)
-
-```
-<H3>Output without Activation and optimizer</H3>
-
-<H3>CONFUSION MAtRIX</H3>
-
-![alt](Screenshot%202024-04-10%20160632.png)
-
-<H3>CLASSIFICATION REPORT</H3>
-
-![alt](Screenshot%202024-04-10%20160640.png)
+![output](/WhatsApp%20Image%202024-04-10%20at%2015.40.31_76f1c488.jpg)
 
 <H3>Result:</H3>
-
 Thus, MLP is implemented for multi-classification using python.
